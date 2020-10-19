@@ -1,0 +1,21 @@
+Exercice 1
+    toLowerCase -> pas fonctionnelle -> dépend contexte
+    max -> fonctionnelle
+    sin -> fonctionnelle
+    add -> pas fonctionnelle -> effet de bord et exceptions
+    size -> pas fonctionnelle ? potentiel indéterminisme
+    contains -> pas fonctionnelle -> même remarque et exceptions
+    valueOf -> dépend de la méthode
+    length -> pas fonctionnelle, lié entrée/sortie et exceptions
+
+    m1 -> pas fonctionnelle -> souvent effert de bordsi void en paramètres ou en sortie
+    m2 -> pas fonctionnelle -> si a est modifié entre 2 appelles ne renvoie pas la même valeur
+    m3 -> pas fonctionnelle -> entrée/sortie
+    m4 -> fonctionnelle si pas exceptions en cas de dépassement de valeurs
+    m5 -> pas fonctionnelle -> comme m2
+    m6 -> pas fonctionnelle -> b peut être modifié
+    m7 -> fonctionnelle -> C final
+    m8 -> pas fonctionnelle -> d private et jamais modifié
+    m9 -> pas fonctionnelle -> division par 0 sur les entier
+    m10 -> fonctionnelle -> division par 0 en float donne NaN -> vérifier cast NaN en int fonctionne
+    m11 -> fonctionnel -> val modifié mais uniquement en local, pas visible à l'extérieur car pas objet
