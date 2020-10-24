@@ -9,19 +9,43 @@ public class Noeud implements Arbre {
     private final List<Arbre> fils;
 
     public Noeud() { this.fils = new ArrayList<>(); }
-    public Noeud(List<Arbre> noeuds) { this.fils = noeuds; }
+    public Noeud(List<Arbre> fils) { this.fils = fils; }
 
     @Override
     public int taille() { return this.fils.stream().map(Arbre::taille).reduce(0, Integer::sum); }
 
     @Override
-    public Integer somme() { return this.fils.stream().map(Arbre::somme).reduce(0, Integer::sum); }
+    public Integer somme() { return this.taille() != 0 ? this.fils.stream().map(Arbre::somme).reduce(0, Integer::sum) : null; }
 
     @Override
-    public Integer min() { return this.fils.stream().map(Arbre::min).min(Integer::min).get(); }
+    public Integer min() { 
+        if(this.taille() == 0) {
+            return null;
+        }
+        Integer min = Integer.MAX_VALUE;
+        for(Arbre unfils: this.fils) {
+            Integer tmpMin = unfils.min();
+            if(tmpMin < min) {
+                min = tmpMin;
+            }
+        }
+        return min;
+    }
 
     @Override
-    public Integer max() { return this.fils.stream().map(Arbre::min).min(Integer::min).get(); }
+    public Integer max() { 
+        if(this.taille() == 0) {
+            return null;
+        }
+        Integer max = Integer.MIN_VALUE;
+        for(Arbre unfils: this.fils) {
+            Integer tmpMax = unfils.max();
+            if(tmpMax > max) {
+                max = tmpMax;
+            }
+        }
+        return max;
+    }
     
     @Override
     public boolean estTrie() { return this.fils.stream().allMatch(Arbre::estTrie); }
