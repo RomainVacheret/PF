@@ -1,4 +1,4 @@
-package td1.ex3;
+package td1.ex3.simple;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -6,8 +6,6 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-
-import td1.ex3.simple.*;
 
 public class AppTest {
 
