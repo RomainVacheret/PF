@@ -1,7 +1,5 @@
 package td1.ex2;
 
-import java.lang.StringBuilder;
-
 class Paire<T, U> {
     private final T element1;
     private final U element2;
@@ -19,12 +17,12 @@ class Paire<T, U> {
         return this.element2;
     }
 
-    public Paire<T, U> changeFst(T element) {
-        return new Paire(element, this.element2);
+    public <V> Paire<V, U> changeFst(V element) {
+        return new Paire<>(element, this.element2);
     }
 
-    public Paire<T, U> changeSnd(U element) {
-        return new Paire(this.element1, element);
+    public <V> Paire<T, V> changeSnd(V element) {
+        return new Paire<>(this.element1, element);
     }
 
     @Override
@@ -34,20 +32,22 @@ class Paire<T, U> {
             .append(",")
             .append(this.element2)
             .append(") :: Paire[")
-            .append(this.element1.getClass())
+            .append(this.element1.getClass().getSimpleName())
             .append(", ")
-            .append(this.element2.getClass())
+            .append(this.element2.getClass().getSimpleName())
             .append("]");
 
         return sb.toString();
     }
 
     public static void main(String[] args) {
-        Paire p = new Paire(1, "un");
+        Paire<Integer, String> p = new Paire<>(1, "un");
         System.out.println(p.toString());
-        p = p.changeFst(1.0);
-        System.out.println(p.toString());
-        p = p.changeSnd(new Paire(1, "un"));
-        System.out.println(p.toString());
+
+        Paire<Double, String> p2 = p.changeFst(1.0);
+        System.out.println(p2.toString());
+
+        Paire<Double, Paire<Integer, String>> p3 = p2.changeSnd(p);
+        System.out.println(p3.toString());
     }
 }
