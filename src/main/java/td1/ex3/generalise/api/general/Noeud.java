@@ -1,11 +1,13 @@
-package td1.ex3.generalise.api;
+package td1.ex3.generalise.api.general;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Noeud<T> implements Arbre<T> {
+import td1.ex3.generalise.api.sommes.Sommable;
+
+public class Noeud<T extends Sommable<T>> implements Arbre<T> {
     private final List<Arbre<T>> fils;
 
     public Noeud() { this.fils = new ArrayList<>(); }

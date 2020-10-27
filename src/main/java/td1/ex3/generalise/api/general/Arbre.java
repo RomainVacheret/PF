@@ -1,8 +1,10 @@
-package td1.ex3.generalise.api;
+package td1.ex3.generalise.api.general;
 
 import java.util.Set;
 
-public interface Arbre<T> {
+import td1.ex3.generalise.api.sommes.Sommable;
+
+public interface Arbre<T extends Sommable<T>> {
     int taille();
     boolean contient(final T val);
     Set<T> valeurs();

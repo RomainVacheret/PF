@@ -1,10 +1,12 @@
-package td1.ex3.generalise.api;
+package td1.ex3.generalise.api.general;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Feuille<T> implements Arbre<T> {
+import td1.ex3.generalise.api.sommes.Sommable;
+
+public class Feuille<T extends Sommable<T>> implements Arbre<T> {
     private final T valeur;
 
     public Feuille(T valeur) { this.valeur = valeur; }
