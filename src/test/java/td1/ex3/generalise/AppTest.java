@@ -143,12 +143,13 @@ public class AppTest {
         assertEquals(contenu, arbre3Chaine().valeurs());
     }
 
-    // @Test public void testValeur() {
-    //     assertEquals(null, arbre0().somme());
-    //     assertEquals((Entier) 6, arbre1().somme());
-    //     assertEquals((Entier) 6, arbre2().somme());
-    //     assertEquals((Entier) 6, arbre3().somme());
-    // }
+
+    @Test public void testMinEntier() {
+        assertEquals(null, arbre0Entier().min());
+        assertEquals(new Entier(1), arbre1Entier().min());
+        assertEquals(new Entier(1), arbre2Entier().min());
+        assertEquals(new Entier(1), arbre3Entier().min());
+    }
 
     // @Test public void testMin() {
     //     assertEquals(null, arbre0().min());
@@ -157,17 +158,17 @@ public class AppTest {
     //     assertEquals((Entier) 1, arbre3().min());
     // }
 
-    // @Test public void testMax() {
-    //     assertEquals(null, arbre0().max());
-    //     assertEquals((Entier) 3, arbre1().max());
-    //     assertEquals((Entier) 3, arbre2().max());
-    //     assertEquals((Entier) 3, arbre3().max());
-    // }
+    @Test public void testMaxEntier() {
+        assertEquals(null, arbre0Entier().max());
+        assertEquals(new Entier(3), arbre1Entier().max());
+        assertEquals(new Entier(3), arbre2Entier().max());
+        assertEquals(new Entier(3), arbre3Entier().max());
+    }
 
-    // @Test public void testEstTrie() {
-    //     assertTrue(arbre0().estTrie());
-    //     assertTrue(arbre1().estTrie());
-    //     assertFalse(arbre2().estTrie());
-    //     assertFalse(arbre3().estTrie());
-    // }
+    @Test public void testEstTrieEntier() {
+        assertTrue(arbre0Entier().estTrie());
+        assertTrue(arbre1Entier().estTrie());
+        assertFalse(arbre2Entier().estTrie());
+        assertFalse(arbre3Entier().estTrie());
+    }
 }
