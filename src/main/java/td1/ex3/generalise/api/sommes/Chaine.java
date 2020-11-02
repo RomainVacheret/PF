@@ -4,14 +4,26 @@ public class Chaine implements Sommable<Chaine> {
 
     private String s;
 
-    public Chaine(String s) { this.s = s; }
+    public Chaine(String s) {
+        this.s = s;
+    }
 
     @Override
-    public Chaine sommer(Chaine v) {  return new Chaine(this.getS() + v.getS()); }
-    
-    public String getS() { return s; }
+    public Chaine sommer(Chaine v) {
+        return new Chaine(this.getS() + v.getS());
+    }
 
-    public void setS(String s) { this.s = s; }
+    public String getS() {
+        return s;
+    }
+
+    public void setS(String s) {
+        this.s = s;
+    }
+
+    public Chaine getInstance() {
+        return new Chaine("");
+    }
 
     @Override
     public int hashCode() {
@@ -42,5 +54,8 @@ public class Chaine implements Sommable<Chaine> {
     public String toString() {
         return "Chaine [s=" + s + "]";
     }
+
+    @Override
+    public int compareTo(Chaine o) { return this.s.compareTo(o.getS()); }
     
 }

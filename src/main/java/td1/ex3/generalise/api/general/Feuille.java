@@ -1,7 +1,5 @@
 package td1.ex3.generalise.api.general;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import td1.ex3.generalise.api.sommes.Sommable;
@@ -18,18 +16,17 @@ public class Feuille<T extends Sommable<T>> implements Arbre<T> {
     public boolean contient(final T val) { return val.equals(this.valeur); }
 
     @Override
-    public Set<T> valeurs() { return new HashSet<>(List.of(this.valeur)); }
+    public Set<T> valeurs() { return Set.of(this.valeur); }
     
-    // @Override
-    // public T min() { return this.valeur; }
+    @Override
+    public T min() { return this.valeur; }
 
-    // @Override
-    // public T max() { return this.valeur; }
+    @Override
+    public T max() { return this.valeur; }
 
     // @Override
     // public boolean estTrie() { return true; }
 
-
-    // @Override
-    // public T somme() { return this.valeur; }
+    @Override
+    public T somme() { return this.valeur; }
 }

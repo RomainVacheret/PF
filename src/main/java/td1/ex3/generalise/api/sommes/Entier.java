@@ -4,14 +4,26 @@ public class Entier implements Sommable<Entier> {
 
     private int val;
 
-    public Entier(int val) { this.val = val;}
+    public Entier(int val) {
+        this.val = val;
+    }
 
     @Override
-    public Entier sommer(Entier v) { return new Entier(v.getVal() + this.getVal()); }
+    public Entier sommer(Entier v) {
+        return new Entier(v.getVal() + this.getVal());
+    }
 
-    public int getVal() { return val; }
+    public int getVal() {
+        return val;
+    }
 
-    public void setVal(int val) { this.val = val; }
+    public void setVal(int val) {
+        this.val = val;
+    }
+
+    public Entier getInstance() {
+        return new Entier(0);
+    }
 
     @Override
     public int hashCode() {
@@ -39,6 +51,9 @@ public class Entier implements Sommable<Entier> {
     public String toString() {
         return "Entier [val=" + val + "]";
     }
+
+    @Override
+    public int compareTo(Entier o) { return Integer.compare(this.val, o.getVal()); }
 
     
 }

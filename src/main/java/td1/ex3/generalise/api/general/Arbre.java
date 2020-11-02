@@ -9,8 +9,8 @@ public interface Arbre<T extends Sommable<T>> {
     boolean contient(final T val);
     Set<T> valeurs();
     
-    // T somme();
-    // T min();
-    // T max();
+    T somme();
+    T min();
+    T max();
     // boolean estTrie();
 }
