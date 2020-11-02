@@ -46,9 +46,27 @@ public class Noeud implements Arbre {
         }
         return max;
     }
+
+    private boolean condition1() {
+        return this.fils.stream().allMatch(Arbre::estTrie);
+    }
+
+    private boolean condition2() {
+        // FIX
+        boolean rtr = true;
+        for(int i = 0; i < this.fils.size() - 1; i++) {
+            final Arbre f1 = this.fils.get(i);
+            final Arbre f2 = this.fils.get(i + 1);
+            if(f1.max() > f2.min()){
+                rtr = false;
+                break;
+            }
+        }
+        return rtr;
+    }
     
     @Override
-    public boolean estTrie() { return this.fils.stream().allMatch(Arbre::estTrie); }
+    public boolean estTrie() { return this.condition1() && this.condition2(); }
 
     @Override
     public boolean contient(final Integer val) { return this.fils.stream().anyMatch(unFils -> unFils.contient(val)); }
