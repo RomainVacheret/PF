@@ -24,9 +24,9 @@ public class Feuille<T extends Sommable<T>> implements Arbre<T> {
     @Override
     public T max() { return this.valeur; }
 
-    // @Override
-    // public boolean estTrie() { return true; }
-
     @Override
     public T somme() { return this.valeur; }
+
+    @Override
+    public boolean estTrie() { return true; }
 }

@@ -9,7 +9,6 @@ import td1.ex3.generalise.api.sommes.Sommable;
 
 public class Noeud<T extends Sommable<T>> implements Arbre<T> {
     private final List<Arbre<T>> fils;
-    private Class<T> x;
 
     public Noeud() { this.fils = new ArrayList<>(); }
     public Noeud(List<Arbre<T>> fils) { this.fils = fils; }
@@ -30,7 +29,7 @@ public class Noeud<T extends Sommable<T>> implements Arbre<T> {
     
     @Override
     public T somme() {
-        if(fils == null || fils.size() == 0)
+        if(fils == null || fils.isEmpty())
             return null;
         T rtr = fils.get(0).somme();
         for(int i = 0; i < fils.size(); i++){
@@ -40,37 +39,48 @@ public class Noeud<T extends Sommable<T>> implements Arbre<T> {
     }
 
     @Override
-    public T min() { 
-        // if(this.taille() == 0) {
-        //     return null;
-        // }
-        // Integer min = Integer.MAX_VALUE;
-        // for(Arbre<T> unfils: this.fils) {
-        //     Integer tmpMin = unfils.min();
-        //     if(tmpMin < min) {
-        //         min = tmpMin;
-        //     }
-        // }
-        // return min;
-        return null;
+    public T min() {
+        if(fils == null || fils.isEmpty())
+            return null;
+        T rtr = fils.get(0).somme();
+        for(int i = 0; i < fils.size(); i++){
+            if(rtr.compareTo(fils.get(i).min()) > 0) {
+                rtr = fils.get(i).min();
+            }
+        }
+        return rtr;
     }
 
     @Override
-    public T max() { 
-        // if(this.taille() == 0) {
-        //     return null;
-        // }
-        // Integer max = Integer.MIN_VALUE;
-        // for(Arbre<T> unfils: this.fils) {
-        //     Integer tmpMax = unfils.max();
-        //     if(tmpMax > max) {
-        //         max = tmpMax;
-        //     }
-        // }
-        // return max;
-        return null;
+    public T max() {
+        if(fils == null || fils.isEmpty())
+            return null;
+        T rtr = fils.get(0).somme();
+        for(int i = 0; i < fils.size(); i++){
+            if(rtr.compareTo(fils.get(i).max()) < 0) {
+                rtr = fils.get(i).max();
+            }
+        }
+        return rtr;
+    }
+
+    private boolean condition1() {
+        return this.fils.stream().allMatch(Arbre::estTrie);
+    }
+
+    private boolean condition2() {
+        boolean rtr = true;
+        for(int i = 0; i < this.fils.size() - 1; i++) {
+            final Arbre f1 = this.fils.get(i);
+            final Arbre f2 = this.fils.get(i + 1);
+            if(f1.max().compareTo(f2.min()) > 0){
+                rtr = false;
+                break;
+            }
+        }
+        return rtr;
     }
     
-    // @Override
-    // public boolean estTrie() { return this.fils.stream().allMatch(Arbre::estTrie); }
+    @Override
+    public boolean estTrie() { return this.condition1() && this.condition2(); }
 }
