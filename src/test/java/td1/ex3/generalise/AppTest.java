@@ -151,13 +151,6 @@ public class AppTest {
         assertEquals(new Entier(1), arbre3Entier().min());
     }
 
-    // @Test public void testMin() {
-    //     assertEquals(null, arbre0().min());
-    //     assertEquals((Entier) 1, arbre1().min());
-    //     assertEquals((Entier) 1, arbre2().min());
-    //     assertEquals((Entier) 1, arbre3().min());
-    // }
-
     @Test public void testMaxEntier() {
         assertEquals(null, arbre0Entier().max());
         assertEquals(new Entier(3), arbre1Entier().max());

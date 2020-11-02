@@ -42,7 +42,7 @@ public class Noeud<T extends Sommable<T>> implements Arbre<T> {
     public T min() {
         if(fils == null || fils.isEmpty())
             return null;
-        T rtr = fils.get(0).somme();
+        T rtr = fils.get(0).min();
         for(int i = 0; i < fils.size(); i++){
             if(rtr.compareTo(fils.get(i).min()) > 0) {
                 rtr = fils.get(i).min();
@@ -55,7 +55,7 @@ public class Noeud<T extends Sommable<T>> implements Arbre<T> {
     public T max() {
         if(fils == null || fils.isEmpty())
             return null;
-        T rtr = fils.get(0).somme();
+        T rtr = fils.get(0).max();
         for(int i = 0; i < fils.size(); i++){
             if(rtr.compareTo(fils.get(i).max()) < 0) {
                 rtr = fils.get(i).max();
