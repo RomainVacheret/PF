@@ -71,8 +71,8 @@ public class Noeud<T extends Sommable<T>> implements Arbre<T> {
     private boolean condition2() {
         boolean rtr = true;
         for(int i = 0; i < this.fils.size() - 1; i++) {
-            final Arbre f1 = this.fils.get(i);
-            final Arbre f2 = this.fils.get(i + 1);
+            final Arbre<T> f1 = this.fils.get(i);
+            final Arbre<T> f2 = this.fils.get(i + 1);
             if(f1.max().compareTo(f2.min()) > 0){
                 rtr = false;
                 break;
