@@ -1,5 +1,6 @@
 package td2.ex2.api;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,5 +14,15 @@ public class Filtrage<T> {
             }
         }
         return rtr;
+    }
+
+    public List<T> filtragePredicatifGenerale(List<Predicate<T>> predicats, List<T> liste) {
+        // List<T> rtr = new ArrayList<T>();
+        // for(T el: liste) {
+        //     if(filtragePredicatif(predicats, el)) {
+        //         rtr.append(el);
+        //     }
+        // }
+        return (List<T>) liste.stream().filter(x -> filtragePredicatif(predicats, x));
     }
 }
