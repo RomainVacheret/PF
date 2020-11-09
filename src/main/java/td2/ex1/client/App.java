@@ -1,9 +1,13 @@
 package td2.ex1.client;
 
+import java.util.List;
+import java.util.function.Function;
+
 import td2.ex1.api.Somme;
 
 public class App {
     public static void main(String[] args) {
+        //Q1
         Somme<Integer> sommeInteger = new Somme<Integer>() {
             @Override
 			public Integer somme(Integer a, Integer b) {
@@ -41,5 +45,16 @@ public class App {
         System.out.println(b);
         System.out.println(c);
         System.out.println(d);
+
+
+        // Q2
+
+        Function<List<String>, String> fString= new ToString<List<String>>() {
+             @Override public String toString(List<String> l) {
+                 StringBuilder sb = new StringBuilder();
+                 l.forEach(l2 -> sb.append(l2).append(" "));
+                 return sb.toString();
+             }
+        }
     }
 }
