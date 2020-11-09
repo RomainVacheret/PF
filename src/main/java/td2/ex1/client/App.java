@@ -1,9 +1,10 @@
 package td2.ex1.client;
 
 import java.util.List;
-import java.util.function.Function;
+import java.util.Map;
 
 import td2.ex1.api.Somme;
+import td2.ex1.api.ToString;
 
 public class App {
     public static void main(String[] args) {
@@ -49,12 +50,26 @@ public class App {
 
         // Q2
 
-        Function<List<String>, String> fString= new ToString<List<String>>() {
-             @Override public String toString(List<String> l) {
-                 StringBuilder sb = new StringBuilder();
-                 l.forEach(l2 -> sb.append(l2).append(" "));
-                 return sb.toString();
-             }
-        }
+        // Function<List<String>, String> fString= new ToString<List<String>>() {
+        //      @Override public String toString(List<String> l) {
+        //          StringBuilder sb = new StringBuilder();
+        //          l.forEach(l2 -> sb.append(l2).append(" "));
+        //          return sb.toString();
+        //      }
+        // }
+
+        ToString<List<String>> fString = (liste) -> {
+            StringBuilder sb = new StringBuilder();
+            l.forEach(l2 -> sb.append(l2).append(" "));
+            return sb.toString();
+        };
+
+        ToString<Map<String, Integer>> fMap = (map) -> {
+            StringBuilder sb = new StringBuilder();
+            map.entrySet().forEach(l2 -> sb.append(l2.getKey()).append(": ").append(l2.getValue()).append(" "));
+            return sb.toString();
+        };
+
+        
     }
 }
