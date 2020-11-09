@@ -12,7 +12,7 @@ import td1.ex3.generalise.api.sommes.*;
 
 public class AppTest {
     public static final Arbre<Entier> arbre0Entier() {
-        return new Noeud(new ArrayList<Arbre<Entier>>());
+        return new Noeud<>(new ArrayList<Arbre<Entier>>());
     }
 
     public static final Arbre<Entier> arbre1Entier() {
@@ -43,7 +43,7 @@ public class AppTest {
     }
 
     public static final Arbre<Chaine> arbre0Chaine() {
-        return new Noeud(new ArrayList<Arbre<Chaine>>());
+        return new Noeud<>(new ArrayList<Arbre<Chaine>>());
     }
 
     public static final Arbre<Chaine> arbre1Chaine() {
