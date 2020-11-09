@@ -58,17 +58,17 @@ public class App {
         //      }
         // }
 
-        ToString<List<String>> fString = (liste) -> {
-            StringBuilder sb = new StringBuilder();
-            l.forEach(l2 -> sb.append(l2).append(" "));
-            return sb.toString();
-        };
+        // ToString<List<String>> fString = (liste) -> {
+        //     StringBuilder sb = new StringBuilder();
+        //     l.forEach(l2 -> sb.append(l2).append(" "));
+        //     return sb.toString();
+        // };
 
-        ToString<Map<String, Integer>> fMap = (map) -> {
-            StringBuilder sb = new StringBuilder();
-            map.entrySet().forEach(l2 -> sb.append(l2.getKey()).append(": ").append(l2.getValue()).append(" "));
-            return sb.toString();
-        };
+        // ToString<Map<String, Integer>> fMap = (map) -> {
+        //     StringBuilder sb = new StringBuilder();
+        //     map.entrySet().forEach(l2 -> sb.append(l2.getKey()).append(": ").append(l2.getValue()).append(" "));
+        //     return sb.toString();
+        // };
 
         
     }
