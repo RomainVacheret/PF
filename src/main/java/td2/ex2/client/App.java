@@ -1,8 +1,10 @@
 package td2.ex2.client;
 
+import java.util.List;
 import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
+import td2.ex2.api.Filtrage;
 import td2.ex2.api.Paire;
 
 public class App {
@@ -16,12 +18,13 @@ public class App {
         Predicate<Double> poidsTropLourd = poids -> poids > 150;
         Predicate<Double> poidsCorrecte = poids -> poidsTropLourd.negate().test(poids);
 
-        // BiPredicate<Integer, Double> accesAutorise = (taille, poids) -> poidsCorrecte.test(poids).and(tailleCorrecte.test(taille));
+        BiPredicate<Integer, Double> accesAutorise = (taille, poids) -> poidsCorrecte.test(poids) && (tailleCorrecte.test(taille));
         
         // Tests
-
+        
         Paire<Integer, Double> p1 = new Paire<Integer, Double>(90, 140.0);
 
+        System.out.println("Question 1");
         System.out.println(tailleTropPetite.test(p1.fst));
         System.out.println(tailleTropGrande.test(p1.fst));
         System.out.println();
@@ -30,6 +33,21 @@ public class App {
         System.out.println();
         System.out.println(poidsTropLourd.test(p1.snd));
         System.out.println(poidsCorrecte.test(p1.snd));
+        System.out.println();
+        System.out.println(accesAutorise.test(p1.fst, p1.snd));
+
+        // Q2
+        Filtrage<Integer> f = new Filtrage<>();
+
+        System.out.println("Question 2");
+        System.out.println(f.filtragePredicatif(List.of(
+            tailleTropPetite, 
+            tailleTropGrande,
+            tailleCorrecte,
+            tailleIncorrecte
+            ),
+            150)
+        );
 
     }
 }
