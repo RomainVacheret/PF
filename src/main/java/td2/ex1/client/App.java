@@ -43,6 +43,7 @@ public class App {
         long c = sommeLong.somme((long) 1, (long) 2);
         String d = sommeString.somme("A", "B");
 
+        System.out.println("Exercice 1 version longue.");
         System.out.println(a);
         System.out.println(b);
         System.out.println(c);
@@ -59,6 +60,7 @@ public class App {
         long c2 = sommeLong2.somme((long) 1, (long) 2);
         String d2 = sommeString2.somme("A", "B");
 
+        System.out.println("Exercice 1 version courte.");
         System.out.println(a2);
         System.out.println(b2);
         System.out.println(c2);
@@ -66,27 +68,26 @@ public class App {
 
 
         // Q2
+        ToString<List<String>> l2s = l -> {
+            StringBuilder sb = new StringBuilder();
+            l.forEach(l2 -> sb.append(l2).append(" "));
+            return sb.toString();
+        };
 
-        // Function<List<String>, String> fString= new ToString<List<String>>() {
-        //      @Override public String toString(List<String> l) {
-        //          StringBuilder sb = new StringBuilder();
-        //          l.forEach(l2 -> sb.append(l2).append(" "));
-        //          return sb.toString();
-        //      }
-        // }
+        ToString<Map<String, Integer>> m2s = m -> {
+            StringBuilder sb = new StringBuilder();
+            m.entrySet().forEach(m2 -> 
+                sb.append(String.format("%s: %s, ", m2.getKey(), m2.getValue()))
+            );
+            return sb.toString();
+        };
 
-        // ToString<List<String>> fString = (liste) -> {
-        //     StringBuilder sb = new StringBuilder();
-        //     l.forEach(l2 -> sb.append(l2).append(" "));
-        //     return sb.toString();
-        // };
+        List<String> liste = List.of("Je", "suis", "content.");
+        Map<String, Integer> map = Map.of("1", 1, "2", 2, "3", 3);
 
-        // ToString<Map<String, Integer>> fMap = (map) -> {
-        //     StringBuilder sb = new StringBuilder();
-        //     map.entrySet().forEach(l2 -> sb.append(l2.getKey()).append(": ").append(l2.getValue()).append(" "));
-        //     return sb.toString();
-        // };
-
+        System.out.println("Exercice 2.");
+        System.out.println(l2s.toString(liste));
+        System.out.println(m2s.toString(map));
         
     }
 }
