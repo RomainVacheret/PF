@@ -20,10 +20,10 @@ public class App {
 
         BiPredicate<Integer, Double> accesAutorise = (taille, poids) -> poidsCorrecte.test(poids) && (tailleCorrecte.test(taille));
         
-        // Tests
-        
-        Paire<Integer, Double> p1 = new Paire<Integer, Double>(90, 140.0);
+        // Tests   
+        Paire<Integer, Double> p1 = new Paire<>(90, 140.0);
 
+        // Q1
         System.out.println("Question 1");
         System.out.println(tailleTropPetite.test(p1.fst));
         System.out.println(tailleTropGrande.test(p1.fst));
@@ -37,33 +37,22 @@ public class App {
         System.out.println(accesAutorise.test(p1.fst, p1.snd));
 
         // Q2
+        List<Predicate<Integer>> liste1 = List.of(tailleTropGrande, tailleIncorrecte);
+        List<Predicate<Integer>> liste2 = List.of(tailleTropGrande, tailleTropPetite, tailleIncorrecte);
+        List<Predicate<Integer>> liste3 = List.of(tailleTropPetite, tailleIncorrecte);
+        // Filtrage pour un element
         Filtrage<Integer> f = new Filtrage<>();
 
-        System.out.println(f.filtragePredicatif(List.of(
-            tailleTropGrande,
-            tailleIncorrecte
-            ),
-            210
-        ));
-        System.out.println(f.filtragePredicatif(List.of(
-            tailleTropGrande,
-            tailleIncorrecte
-            ),
-            200
-        ));
-        System.out.println(f.filtragePredicatif(List.of(
-            tailleTropGrande,
-            tailleTropPetite,
-            tailleIncorrecte
-            ),
-            200
-        ));
-        System.out.println(f.filtragePredicatif(List.of(
-            tailleTropPetite,
-            tailleIncorrecte
-            ),
-            80
-        ));
+        System.out.println(f.filtragePredicatif(liste1, 210));
+        System.out.println(f.filtragePredicatif(liste1, 200));
+        System.out.println(f.filtragePredicatif(liste2, 200));
+        System.out.println(f.filtragePredicatif(liste3, 80));
 
+        // Filtre pour une liste d'elements
+        List<Integer> listeEl1 = List.of(210, 63, 220, 230, 200, 145, 58);
+
+        System.out.println(f.filtragePredicatifGeneral(liste1, listeEl1));
+        System.out.println(f.filtragePredicatifGeneral(liste2, listeEl1));
+        System.out.println(f.filtragePredicatifGeneral(liste3, listeEl1));
     }
 }
