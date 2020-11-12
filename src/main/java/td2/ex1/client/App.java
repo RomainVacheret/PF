@@ -9,6 +9,14 @@ import td2.ex1.api.ToString;
 public class App {
     public static void main(String[] args) {
         //Q1
+        /** Comparaison Somme et Sommable
+         *  Cette nouvelle version est beaucoup plus econome que la premiere.
+         *  Nous n'avons pas besoin de creer de nouvelles classes implementant
+         *  l'interface. 
+         *  Cette version est plus interressante si nous n'avons besoin que d'une
+         *  seule operation.
+         */
+
         // Version longue
         Somme<Integer> sommeInteger = new Somme<Integer>() {
             @Override
