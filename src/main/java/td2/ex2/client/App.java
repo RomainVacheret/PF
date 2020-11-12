@@ -39,15 +39,31 @@ public class App {
         // Q2
         Filtrage<Integer> f = new Filtrage<>();
 
-        System.out.println("Question 2");
         System.out.println(f.filtragePredicatif(List.of(
-            tailleTropPetite, 
             tailleTropGrande,
-            tailleCorrecte,
             tailleIncorrecte
             ),
-            150)
-        );
+            210
+        ));
+        System.out.println(f.filtragePredicatif(List.of(
+            tailleTropGrande,
+            tailleIncorrecte
+            ),
+            200
+        ));
+        System.out.println(f.filtragePredicatif(List.of(
+            tailleTropGrande,
+            tailleTropPetite,
+            tailleIncorrecte
+            ),
+            200
+        ));
+        System.out.println(f.filtragePredicatif(List.of(
+            tailleTropPetite,
+            tailleIncorrecte
+            ),
+            80
+        ));
 
     }
 }

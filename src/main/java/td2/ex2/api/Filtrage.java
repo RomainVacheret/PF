@@ -6,14 +6,18 @@ import java.util.function.Predicate;
 
 public class Filtrage<T> {
     public boolean filtragePredicatif(List<Predicate<T>> liste, T element) {
-        boolean rtr = true;
+        // boolean rtr = true;
+        Predicate<T> composition = x -> true;
+        // liste.forEach(predicate -> composition = composition.and(predicate));
         for(Predicate<T> pre: liste ){
-            if(!pre.test(element)) {
-                rtr = false;
-                break;
-            }
+            // if(!pre.test(element)) {
+            //     rtr = false;
+            //     break;
+            // }
+            composition = composition.and(pre);
         }
-        return rtr;
+        // return rtr;
+        return composition.test(element);
     }
 
     public List<T> filtragePredicatifGenerale(List<Predicate<T>> predicats, List<T> liste) {
