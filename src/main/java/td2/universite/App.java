@@ -82,9 +82,10 @@ public class App {
             }
         }; 
 
-        System.out.println(moyenne.moyenne(e1));
 
         // Q5
+        // Il ne faut pas l'utiliser sur un etudiant defaillant puisque ce cas n'est pas gere
+        // Un NullPointerException sera leve
         Predicate<Etudiant> naPasLaMoyennev1 = (Etudiant x) -> {
             return moyenne.moyenne(x) < 10;
         };
@@ -103,7 +104,9 @@ public class App {
         App.afficheSI("** ETUDIANTS SOUS LA MOYENNE (v2)", naPasLaMoyennev2, a1);
             
         // Q7
-        Predicate<Etudiant> session2v1 = (Etudiant x) -> aNoteEliminatoire.or(aDef).test(x);
+        // Il faut que la verification de la defaillance soit faite avant celle de la moyenne puisqu'elle ne 
+        // prend pas en compte ce cas ci
+        Predicate<Etudiant> session2v1 = (Etudiant x) -> aDef.or(naPasLaMoyennev1).or(aNoteEliminatoire).test(x);
 
         App.afficheSI("** ETUDIANTS EN SESSION 2", session2v1, a1);
 
@@ -153,10 +156,6 @@ public class App {
             }
         };
 
-        Predicate<Etudiant> naPasLaMoyenneIndicative = (Etudiant x) -> {
-            return moyenneIndicative.moyenne(x) < 10;
-        };
-
         Affichage aff3 = new Affichage(){
             @Override
             public String affichage(Etudiant x) {
@@ -165,7 +164,9 @@ public class App {
             }
         };
         
-        App.afficheSIv2("** TOUS LES ETUDIANTS SOUS LA MOYENNE INDICATIVE", naPasLaMoyenneIndicative, a1, aff3);
+        App.afficheSIv2("** TOUS LES ETUDIANTS (v4)", x -> true, a1, aff3);
+
+        
     }
 
     public static void afficheSI(String enTete, Predicate<Etudiant> predicat, Annee annee){
