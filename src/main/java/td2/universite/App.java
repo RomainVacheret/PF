@@ -29,6 +29,19 @@ public class App {
         Predicate<Etudiant> test = (Etudiant x) -> x.annee().etudiants().contains(x);
         App.afficheSI("Tous les etudiants", test, a1);
 
+        // Q2
+        Predicate<Etudiant> aDef = (Etudiant x) -> {
+            for (UE ue : x.annee().ues()) {
+                for (Matiere matiere : ue.ects().keySet()) {
+                    if(!x.notes().containsKey(matiere)){
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
+
+        App.afficheSI("Defaillants", aDef, a1);
         
     }
 
