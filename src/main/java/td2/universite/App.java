@@ -102,7 +102,12 @@ public class App {
         };
 
         App.afficheSI("** ETUDIANTS SOUS LA MOYENNE (v2)", naPasLaMoyennev2, a1);
-              
+            
+        // Q7
+        Predicate<Etudiant> session2v1 = (Etudiant x) -> aNoteEliminatoire.or(aDef).test(x);
+
+        App.afficheSI("** ETUDIANTS EN SESSION 2", session2v1, a1);
+
     }
 
     public static void afficheSI(String enTete, Predicate<Etudiant> predicat, Annee annee){
