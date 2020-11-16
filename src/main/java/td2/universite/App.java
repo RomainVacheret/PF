@@ -3,7 +3,6 @@ package td2.universite;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
-import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class App {
@@ -127,6 +126,46 @@ public class App {
         App.afficheSIv2("** TOUS LES ETUDIANTS (v2)", test, a1, aff1);
         App.afficheSIv2("** TOUS LES ETUDIANTS (v3)", test, a1, aff2);
 
+
+        // Q9
+
+        Moyenne moyenneIndicative = new Moyenne(){
+            @Override
+            public Double moyenne(Etudiant x) {
+                Double rtr = null;
+                double totalNotes = 0;
+                double totalCoeffs = 0;
+                for(UE ue: x.annee().ues()){
+                    for(Entry<Matiere, Integer> ects : ue.ects().entrySet()) {
+                        Matiere matiere = ects.getKey();
+                        Integer credits = ects.getValue();
+                        if(x.notes().keySet().contains(matiere)){
+                            totalNotes += x.notes().get(matiere) * credits;
+                        } 
+                            totalCoeffs += credits;
+                        
+                    }
+                }
+                if(totalCoeffs != 0) {
+                    rtr = totalNotes / totalCoeffs;
+                }
+                return rtr;
+            }
+        };
+
+        Predicate<Etudiant> naPasLaMoyenneIndicative = (Etudiant x) -> {
+            return moyenneIndicative.moyenne(x) < 10;
+        };
+
+        Affichage aff3 = new Affichage(){
+            @Override
+            public String affichage(Etudiant x) {
+                Double moy = moyenneIndicative.moyenne(x);
+                return String.format("%s %s : %.2f", x.prenom(), x.nom(), moy);
+            }
+        };
+        
+        App.afficheSIv2("** TOUS LES ETUDIANTS SOUS LA MOYENNE INDICATIVE", naPasLaMoyenneIndicative, a1, aff3);
     }
 
     public static void afficheSI(String enTete, Predicate<Etudiant> predicat, Annee annee){
