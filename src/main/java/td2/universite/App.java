@@ -3,6 +3,7 @@ package td2.universite;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 public class App {
@@ -166,7 +167,14 @@ public class App {
         
         App.afficheSIv2("** TOUS LES ETUDIANTS (v4)", x -> true, a1, aff3);
 
-        
+        // Q10
+
+        BiPredicate<Etudiant, Moyenne> naPasMoyenneGeneralise = (Etudiant x, Moyenne m) -> {
+            Double moy = m.moyenne(x);
+            return moy == null || moy < 10;
+        };
+
+        App.afficheSIv2("** TOUS LES ETUDIANTS SOUS LA MOYENNE INDICATIVE V2", naPasMoyenneGeneralise, a1, aff3, moyenneIndicative);
     }
 
     public static void afficheSI(String enTete, Predicate<Etudiant> predicat, Annee annee){
@@ -192,6 +200,15 @@ public class App {
         System.out.println(enTete);
         annee.etudiants().forEach(e -> {
             if(predicat.test(e)){
+                System.out.println(a.affichage(e));
+            }
+        });
+    }
+
+    public static void afficheSIv2(String enTete, BiPredicate<Etudiant, Moyenne> fun, Annee annee, Affichage a, Moyenne moy) {
+        System.out.println(enTete);
+        annee.etudiants().forEach(e -> {
+            if(fun.test(e, moy)){
                 System.out.println(a.affichage(e));
             }
         });
