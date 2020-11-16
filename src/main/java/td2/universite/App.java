@@ -43,6 +43,21 @@ public class App {
 
         App.afficheSI("** ETUDIANTS DEFAILLANTS", aDef, a1);
 
+        // Q3
+        Predicate<Etudiant> aNoteEliminatoire = (Etudiant x) -> {
+            boolean rtr = false;
+            for(double note : x.notes().values()){
+                if(note < 6) {
+                    rtr = true;
+                    break;
+                }
+            }
+            return rtr;
+        };
+
+        App.afficheSI("** ETUDIANTS AVEC NOTE ELIMINATOIRE", aNoteEliminatoire, a1);  
+
+        // Q4
               
     }
 
