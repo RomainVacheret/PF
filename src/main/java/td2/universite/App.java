@@ -1,8 +1,8 @@
 package td2.universite;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
@@ -108,6 +108,25 @@ public class App {
 
         App.afficheSI("** ETUDIANTS EN SESSION 2", session2v1, a1);
 
+        // Q8
+        Affichage aff1 = new Affichage(){
+            @Override
+            public String affichage(Etudiant x) {
+                return x.toString();
+            }
+        };
+
+        Affichage aff2 = new Affichage(){
+            @Override
+            public String affichage(Etudiant x) {
+                Double moy = moyenne.moyenne(x);
+                return String.format("%s %s : %s", x.prenom(), x.nom(), moy != null ? moy.toString() : "défaillant");
+            }
+        };
+
+        App.afficheSIv2("** TOUS LES ETUDIANTS (v2)", test, a1, aff1);
+        App.afficheSIv2("** TOUS LES ETUDIANTS (v3)", test, a1, aff2);
+
     }
 
     public static void afficheSI(String enTete, Predicate<Etudiant> predicat, Annee annee){
@@ -127,5 +146,14 @@ public class App {
             }
         });
         
+    }
+
+    public static void afficheSIv2(String enTete, Predicate<Etudiant> predicat, Annee annee, Affichage a) {
+        System.out.println(enTete);
+        annee.etudiants().forEach(e -> {
+            if(predicat.test(e)){
+                System.out.println(a.affichage(e));
+            }
+        });
     }
 }
