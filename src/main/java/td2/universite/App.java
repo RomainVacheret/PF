@@ -84,6 +84,11 @@ public class App {
         }; 
 
         System.out.println(moyenne.moyenne(e1));
+
+        // Q5
+        Predicate<Etudiant> naPasLaMoyennev1 = (Etudiant x) -> {
+            return moyenne.moyenne(x) > 10;
+        };
               
     }
 
