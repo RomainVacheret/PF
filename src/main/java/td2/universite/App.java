@@ -27,7 +27,7 @@ public class App {
 
         // Q1
         Predicate<Etudiant> test = (Etudiant x) -> x.annee().etudiants().contains(x);
-        App.afficheSI("Tous les etudiants", test, a1);
+        App.afficheSI("** TOUS LES ETUDIANTS", test, a1);
 
         // Q2
         Predicate<Etudiant> aDef = (Etudiant x) -> {
@@ -41,8 +41,9 @@ public class App {
             return false;
         };
 
-        App.afficheSI("Defaillants", aDef, a1);
-        
+        App.afficheSI("** ETUDIANTS DEFAILLANTS", aDef, a1);
+
+              
     }
 
     public static void afficheSI(String enTete, Predicate<Etudiant> predicat, Annee annee){
