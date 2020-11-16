@@ -87,8 +87,21 @@ public class App {
 
         // Q5
         Predicate<Etudiant> naPasLaMoyennev1 = (Etudiant x) -> {
-            return moyenne.moyenne(x) > 10;
+            return moyenne.moyenne(x) < 10;
         };
+
+        // Q6
+        Predicate<Etudiant> naPasLaMoyennev2 = (Etudiant x) -> {
+            boolean rtr = false;
+            if(aDef.test(x)){
+                rtr = true;
+            } else {
+                rtr = naPasLaMoyennev1.test(x);
+            }
+            return rtr;
+        };
+
+        App.afficheSI("** ETUDIANTS SOUS LA MOYENNE (v2)", naPasLaMoyennev2, a1);
               
     }
 
