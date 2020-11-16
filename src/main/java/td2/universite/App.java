@@ -2,6 +2,8 @@ package td2.universite;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class App {
@@ -58,6 +60,30 @@ public class App {
         App.afficheSI("** ETUDIANTS AVEC NOTE ELIMINATOIRE", aNoteEliminatoire, a1);  
 
         // Q4
+        Moyenne moyenne = new Moyenne(){
+            @Override
+            public Double moyenne(Etudiant x) {
+                Double rtr = null;
+                double totalNotes = 0;
+                double totalCoeffs = 0;
+                if(!aDef.test(x)){
+                    for(UE ue: x.annee().ues()){
+                        for(Entry<Matiere, Integer> ects : ue.ects().entrySet()) {
+                            Matiere matiere = ects.getKey();
+                            Integer credits = ects.getValue();
+                            totalNotes += x.notes().get(matiere) * credits;
+                            totalCoeffs += credits;
+                        }
+                    }
+                    if(totalCoeffs != 0) {
+                        rtr = totalNotes / totalCoeffs;
+                    }
+                }
+                return rtr;
+            }
+        }; 
+
+        System.out.println(moyenne.moyenne(e1));
               
     }
 
