@@ -29,12 +29,21 @@ public class Commande {
         return lignes;
     }
 
+    // Q2.2
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("Commande\n");
         str.append(lignes.stream().map(formatteurLigne).collect(Collectors.joining()));
         return str.toString();
+    }
+
+    // Q2.3
+    public String toString(Function<Paire<Produit, Integer>, String> func) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Commandes\n");
+        sb.append(lignes.stream().map(func).collect(Collectors.joining()));
+        return sb.toString();
     }
 
     /**
