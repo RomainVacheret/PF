@@ -6,10 +6,11 @@ package td3.td2;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Map.Entry;
+import java.util.Set;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import td2.universite.Annee;
 import td2.universite.Etudiant;
@@ -17,6 +18,14 @@ import td2.universite.Matiere;
 import td2.universite.UE;
 
 public class App {
+
+
+    // TD3 Exercice 2
+        // Q1.1
+        public static final Function<Annee, Stream<Matiere>> matieresA = a -> a.ues().stream().flatMap(ue -> ue.ects().keySet().stream());
+        //Q1.2
+        public static final Function<Etudiant, Stream<Matiere>> matieresE = et -> matieresA.apply(et.annee());
+        
 
     //
     // QUESTION 1.1
