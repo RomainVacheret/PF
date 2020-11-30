@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import td2.universite.Annee;
@@ -36,6 +37,10 @@ public class App {
         public static final BinaryOperator<Paire<Double, Integer>> accumulateurMoyenne = (a, b) -> new Paire<Double, Integer>(a.fst + b.fst * b.snd, a.snd + b.snd);
         // Q1.7
         public static final Paire<Double, Integer> zero = new Paire<>(0.0, 0);
+        // Q1.8
+        public static final Function<Etudiant, List<Paire<Double, Integer>>> notesPoderees = et -> et.notes().entrySet().stream().map(ent -> 
+            matieresCoefE.apply(et).map(x -> new Paire<>(ent.getValue(), x.snd)).reduce(zero, accumulateurMoyenne)
+        ).collect(Collectors.toList());
 
 
     //
