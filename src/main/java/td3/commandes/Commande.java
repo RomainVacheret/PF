@@ -67,12 +67,14 @@ public class Commande {
         return commandeNormalisee;
     }
 
+    // Q2.4
     public Double cout(Function<Paire<Produit, Integer>, Double> calculLigne) {
-        double rtr = 0;
-        for (Paire<Produit, Integer> l : normaliser().lignes) {
-            rtr += calculLigne.apply(l);
-        }
-        return rtr;
+        // double rtr = 0;
+        // for (Paire<Produit, Integer> l : normaliser().lignes) {
+        //     rtr += calculLigne.apply(l);
+        // }
+        // return rtr;
+        return normaliser().lignes().stream().map(calculLigne).reduce(0.0, (sub, el) -> sub + el);
     }
 
     public String affiche(Function<Paire<Produit, Integer>, Double> calculLigne) {
