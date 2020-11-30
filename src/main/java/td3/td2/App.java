@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
+import java.util.function.BinaryOperator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -31,8 +32,10 @@ public class App {
         public static final Function<Entry<Matiere, Integer>, Paire<Matiere, Integer>> entry2paire = e -> new Paire<Matiere, Integer>(e.getKey(), e.getValue());
         // Q1.5
         public static final Function<Etudiant, Stream<Paire<Matiere, Integer>>> matieresCoefE = et -> matieresCoefE_.apply(et).map(entry2paire);
-        // 
-        
+        // Q1.6
+        public static final BinaryOperator<Paire<Double, Integer>> accumulateurMoyenne = (a, b) -> new Paire<Double, Integer>(a.fst + b.fst * b.snd, a.snd + b.snd);
+        // Q1.7
+        public static final Paire<Double, Integer> zero = new Paire<>(0.0, 0);
 
 
     //
