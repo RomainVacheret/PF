@@ -29,7 +29,9 @@ public class App {
         public static final Function<Etudiant, Stream<Entry<Matiere, Integer>>> matieresCoefE_ = et -> et.annee().ues().stream().flatMap(ue -> ue.ects().entrySet().stream());
         // Q1.4
         public static final Function<Entry<Matiere, Integer>, Paire<Matiere, Integer>> entry2paire = e -> new Paire<Matiere, Integer>(e.getKey(), e.getValue());
-        
+        // Q1.5
+        public static final Function<Etudiant, Stream<Paire<Matiere, Integer>>> matieresCoefE = et -> matieresCoefE_.apply(et).map(entry2paire);
+        // 
         
 
 
