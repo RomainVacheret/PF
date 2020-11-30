@@ -3,6 +3,8 @@ package td3.commandes;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +18,7 @@ public class Commande {
     }
 
     // Q2.1
-    public Function<Paire<Produit, Integer>, String> formatteurLigne = paire -> String.format("%s x%d%n", paire.fst(), paire.snd());
+    public static final Function<Paire<Produit, Integer>, String> formatteurLigne = paire -> String.format("%s x%d%n", paire.fst(), paire.snd());
 
     public Commande ajouter(Produit p, int q) {
         lignes.add(new Paire<>(p, q));
@@ -31,9 +33,7 @@ public class Commande {
     public String toString() {
         StringBuilder str = new StringBuilder();
         str.append("Commande\n");
-        for (Paire<Produit, Integer> ligne : lignes) {
-            str.append(String.format("%s x%d\n", ligne.fst(), ligne.snd()));
-        }
+        str.append(lignes.stream().map(formatteurLigne).collect(Collectors.joining()));
         return str.toString();
     }
 
