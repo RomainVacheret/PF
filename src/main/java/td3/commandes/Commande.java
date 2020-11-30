@@ -15,6 +15,9 @@ public class Commande {
         this.lignes = new ArrayList<>();
     }
 
+    // Q2.1
+    public Function<Paire<Produit, Integer>, String> formatteurLigne = paire -> String.format("%s x%d%n", paire.fst(), paire.snd());
+
     public Commande ajouter(Produit p, int q) {
         lignes.add(new Paire<>(p, q));
         return this;
