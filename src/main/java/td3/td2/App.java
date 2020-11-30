@@ -23,9 +23,14 @@ public class App {
     // TD3 Exercice 2
         // Q1.1
         public static final Function<Annee, Stream<Matiere>> matieresA = a -> a.ues().stream().flatMap(ue -> ue.ects().keySet().stream());
-        //Q1.2
+        // Q1.2
         public static final Function<Etudiant, Stream<Matiere>> matieresE = et -> matieresA.apply(et.annee());
+        // Q1.3
+        public static final Function<Etudiant, Stream<Entry<Matiere, Integer>>> matieresCoefE_ = et -> et.annee().ues().stream().flatMap(ue -> ue.ects().entrySet().stream());
+        // Q1.4
         
+        
+
 
     //
     // QUESTION 1.1
